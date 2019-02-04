@@ -23,6 +23,13 @@ steps:
     inputs:
       testResultsFiles: '$(System.DefaultWorkingDirectory)/test-report.xml'
 
+  - task: whitesource.ws-bolt.bolt.wss.WhiteSource Bolt@19
+    displayName: 'WhiteSource Bolt'
+    inputs:
+      cwd: src
+
+  
+
   - task: PublishCodeCoverageResults@1
     displayName: 'Publish Code Coverage'
     condition: in(variables['Agent.JobStatus'], 'Succeeded')
